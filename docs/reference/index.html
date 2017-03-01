@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authors • aRchaic</title>
+<title>Function reference • aRchaic</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -20,9 +20,9 @@
 
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <div class="container template-authors">
+    <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,12 +44,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">aRchaic</a>
+      <a class="navbar-brand" href="../index.html">aRchaic</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       
@@ -69,34 +69,47 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-12">
+  <div class="col-md-9">
     <div class="page-header">
-      <h1>Authors</h1>
+      <h1>Function reference</h1>
+      <h4>version&nbsp;0.99.0</h4>
     </div>
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Kushal Dey</strong>. Author, maintainer.
-        </p>
-      </li>
-      <li>
-        <p><strong>Hussein Al-Asadi</strong>. Author.
-        </p>
-      </li>
-      <li>
-        <p><strong>Matthew Stephens</strong>. Contributor.
-        </p>
-      </li>
-      <li>
-        <p><strong>John Novembre</strong>. Contributor.
-        </p>
-      </li>
-    </ul>
+    <div class="contents">
+      <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+      <p class="section-desc"></p>
 
+      
+      <p><a href="aggregate_signature_counts.html">Aggregate mutationFileFormat for multiple files into a matrix of counts of signatures.</a></p>
+      <ul>
+        <li><code><a href="aggregate_signature_counts.html">aggregate_signature_counts</a></code></li>
+      </ul>
+      
+      <p><a href="club_signature_counts.html">Club signatures accounting for the strand break and strand effect</a></p>
+      <ul>
+        <li><code><a href="club_signature_counts.html">club_signature_counts</a></code></li>
+      </ul>
+      
+      <p><a href="damageLogo_five.html">Builds damage logo plots along with mutational profile across read and the strand break composition for the clusters</a></p>
+      <ul>
+        <li><code><a href="damageLogo_five.html">damageLogo_five</a></code></li>
+      </ul>
+      
+      <p><a href="read_length_distribution.html">Read length distribution plots corresponding to mutationFileFormat files</a></p>
+      <ul>
+        <li><code><a href="read_length_distribution.html">read_length_distribution</a></code></li>
+      </ul>
+    
+    </div>
   </div>
 
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#section-all-functions">All functions</a></li>
+    </ul>
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">

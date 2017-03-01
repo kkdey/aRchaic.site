@@ -1,4 +1,4 @@
-Package: aRchaic.site
+Package: aRchaic
 Type: Package
 Title: Visualization, Exploration and Clustering of Ancient vs Modern BAM mutation patterns
 Version: 0.99.0
