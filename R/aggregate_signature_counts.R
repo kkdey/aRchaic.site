@@ -20,10 +20,16 @@
 
 
 aggregate_signature_counts <- function(dir,
+                                       pattern = NULL,
                                        breaks = NULL,
                                        flanking_bases = 1,
                                        output_rda = NULL){
-  ancient_files <- list.files(dir)
+  if(is.null(pattern)){
+    ancient_files <- setdiff(list.files(dir, pattern = ".csv"), list.files(dir, pattern = ".csv#"))
+  }else{
+    ancient_files <- list.files(dir, pattern = pattern)
+  }
+  
   signature_ancient <- vector(mode="list")
   signature_counts_ancient <- vector(mode="list")
 
@@ -34,12 +40,12 @@ aggregate_signature_counts <- function(dir,
                                        type=2)
     signature_counts_ancient[[num]] <- tmp_dat[,2];
     signature_ancient[[num]] <- as.character(tmp_dat[,1]);
-    cat("Reading file ", num, "\n")
+    cat("Reading file ", paste0(dir, ancient_files[num]), "\n")
   }
 
   merged_signature_ancient <- signature_ancient[[1]]
 
-  if(length(ancient_files) > 2){
+  if(length(ancient_files) >= 2){
     for(num in 2:length(ancient_files)){
       merged_signature_ancient <- union(merged_signature_ancient, signature_ancient[[num]])
     }
@@ -61,12 +67,12 @@ aggregate_signature_counts <- function(dir,
 
   indices2 <- numeric()
   for(m in 1:(4+2*flanking_bases)){
-    indices2 <- c(indices2, which(signature_split[,m]=="N"));
+    indices2 <- c(indices2, which(signature_split[,m]=="N" | signature_split[,m]=="R"));
   }
 
   indices3 <- numeric()
-  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 4)]=="N"))
-  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 6)]=="N"))
+  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 4)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
+  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 6)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
 
 
   indices <- union(indices1, union(indices2, indices3))
@@ -77,6 +83,8 @@ aggregate_signature_counts <- function(dir,
     ancient_counts_filtered <- ancient_counts
   }
 
+  ancient_counts_filtered <- matrix(ancient_counts_filtered, nrow = nrow(ancient_counts))
+  
   rownames(ancient_counts_filtered) <- ancient_files_filt
   if(length(indices) > 0){
     colnames(ancient_counts_filtered) <- merged_signature_ancient[-indices]
@@ -105,7 +113,7 @@ damage_build_bin_counts =  function(file,
   if(is.null(breaks)){
     bins <- c(-1, 5, 10, 15, 20, max(min_dist_from_end))
   }else{
-    message("breaks values provided : adjusting")
+   # message("breaks values provided : adjusting")
     bins <- c(intersect(breaks, (-1):max(min_dist_from_end)),max(min_dist_from_end))
   }
 

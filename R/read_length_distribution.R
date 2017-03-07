@@ -21,6 +21,7 @@
 #' @export
 
 read_length_distribution <- function(dir,
+                                     pattern = NULL,
                                      end_break = 5,
                                      plot_layout = c(3,3),
                                      cols = c("red", "green", "blue"),
@@ -29,7 +30,12 @@ read_length_distribution <- function(dir,
 
   ###  read in all the files in the directory
 
-  files <- list.files(paste0(dir))
+  if(is.null(pattern)){
+    files <- setdiff(list.files(dir, pattern = ".csv"), list.files(dir, pattern = ".csv#"))
+  }else{
+    files <- list.files(dir, pattern = pattern)
+  }
+  
   tab <- list()
   for(l in files){
     tab[[l]] <- read.csv(paste0(dir, l), header=FALSE)
