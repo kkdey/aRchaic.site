@@ -19,9 +19,9 @@ aRchaic_view = function(dir,
                         title = NULL,
                         output_dir = NULL,
                         save_plot = TRUE){
-  
+
   if(is.null(title)){
-    title <- paste0(file)
+    title <- strsplit(file, ".csv")[[1]][1]
   }
   logo.control.default <- list(sig_names = NULL, ic.scale=TRUE,
                                max_pos = 20, flanking_bases=1,
@@ -36,35 +36,40 @@ aRchaic_view = function(dir,
                                breaklogoport_x = 1.00, breaklogoport_y = 0.40, breaklogoport_width=0.40, breaklogoport_height=0.50,
                                barport_x = 0.58, barport_y=0.60, barport_width=0.25, barport_height=0.25,
                                output_width = 1200, output_height = 700)
-  
+
   logo.control <- modifyList(logo.control, logo.control.default)
-  
-  
+
+
   if(file.exists(paste0(dir, tail(strsplit(dir, "/")[[1]],1), ".rda"))){
     message("MutationFeatureFormat file present: skipping the signature aggregation step")
     mff_dat <- get(load(paste0(dir, tail(strsplit(dir, "/")[[1]],1), ".rda")))
     index <- grep(paste0(file), rownames(mff_dat))
     clubbed_counts <- mff_dat[index, ]
     clubbed_counts_norm <- clubbed_counts/ sum(clubbed_counts)
+
+    temp <- as.matrix(clubbed_counts_norm)
+    rownames(temp) <- names(clubbed_counts_norm)
+
   }else{
     message("MutationFeatureFormat file not present: performing the signature aggregation step ")
+    pattern =file
     out <- aggregate_signature_counts(dir = dir,
                                       pattern = pattern,
                                       breaks = breaks,
                                       flanking_bases = flanking_bases)
     clubbed_counts <- club_signature_counts(out, flanking_bases = 1)
     clubbed_counts_norm <- clubbed_counts/ sum(clubbed_counts)
+
+    temp <- t(clubbed_counts_norm)
   }
-  
+
   if(is.null(output_dir)){
     output_dir <- paste0(getwd(), "/")
   }
-  
-  temp <- as.matrix(clubbed_counts_norm)
-  rownames(temp) <- names(clubbed_counts_norm)
-  do.call(damageLogo_five, append(list(theta_pool = temp, 
-                                       output_dir = output_dir, 
+
+
+  do.call(damageLogo_five, append(list(theta_pool = temp,
+                                       output_dir = output_dir,
                                        save_plot = save_plot),
                                   logo.control))
   }
-  

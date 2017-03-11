@@ -29,7 +29,7 @@ aggregate_signature_counts <- function(dir,
   }else{
     ancient_files <- list.files(dir, pattern = pattern)
   }
-  
+
   signature_ancient <- vector(mode="list")
   signature_counts_ancient <- vector(mode="list")
 
@@ -65,17 +65,30 @@ aggregate_signature_counts <- function(dir,
 
   indices1 <- which(signature_split[,(flanking_bases+1)]==signature_split[,(flanking_bases+4)])
 
-  indices2 <- numeric()
-  for(m in 1:(4+2*flanking_bases)){
-    indices2 <- c(indices2, which(signature_split[,m]=="N" | signature_split[,m]=="R"));
+  wrong_letters <- c("B", "D", "E", "F", "H", "I", "J", "K", "L", "M", "N", "O",
+                     "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z")
+  temp <- list()
+  for(l in 1:length(wrong_letters)){
+    temp[[l]] <- grep(paste0(wrong_letters[l]), merged_signature_ancient)
   }
 
-  indices3 <- numeric()
-  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 4)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
-  indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 6)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
+  indices2 <- Reduce(union, temp)
 
+  # temp1 <- grep("N", sign)
+  # indices2 <- numeric()
+  # for(m in 1:(4+2*flanking_bases)){
+  #   temp1 <- gre
+  #   indices2 <- c(indices2, which(signature_split[,m]=="N" | signature_split[,m]=="R"));
+  # }
+  #
+  # indices3 <- numeric()
+  # indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 4)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
+  # indices3 <- c(indices3, which(signature_split[,(4+2*flanking_bases + 6)]=="N" | signature_split[,(4+2*flanking_bases + 4)]=="R"))
+  #
 
-  indices <- union(indices1, union(indices2, indices3))
+  # indices <- union(indices1, union(indices2, indices3))
+
+  indices <- union(indices1, indices2)
 
   if(length(indices) > 0) {
     ancient_counts_filtered <- ancient_counts[,-indices]
@@ -84,7 +97,7 @@ aggregate_signature_counts <- function(dir,
   }
 
   ancient_counts_filtered <- matrix(ancient_counts_filtered, nrow = nrow(ancient_counts))
-  
+
   rownames(ancient_counts_filtered) <- ancient_files_filt
   if(length(indices) > 0){
     colnames(ancient_counts_filtered) <- merged_signature_ancient[-indices]

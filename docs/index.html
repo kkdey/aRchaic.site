@@ -148,21 +148,21 @@ width = "120px" height="30px" alt=""> <span style="color:black;">
 
 <p class = "margin"><font size="4"> aRchaic uses Python interface for data preprocessing, a demo of which is provided in the next section, and R/RStudio for the main statistical analysis. R can be downloaded from <a href="https://cran.r-project.org/"> CRAN </a>. To start R, Windows users can click on the R GUI that comes with the install. Linux/Mac users can also run R through terminal by typing </font></p>
 
-<pre><code> 
-R 
+<pre><code>
+R
 </code></pre>
 
 <p><span class="margin"><font size="4"> We recommend users to use <a href=https://www.rstudio.com/RStudio> RStudio </a> instead, which is a well maintained GUI for R and is extremely user friendly.</span></font></p>
 
 <p><span class="margin"><font size="4"> Once in R/RStudio, the user can install  the Github developmental version of the <strong> aRchaic </strong> package through devtools. </span></font></p>
 
-<pre><code> 
+<pre><code>
 devtools::install_github("aRchaic")
 </code></pre>
 
 <p><span class="margin"><font size="4"> <strong> aRchaic </strong> automatically loads the packages mentioned above. The routine to manually install the above packages are the following </span></font></p>
 
-<pre><code> 
+<pre><code>
 
 ###  Github R packages
 
@@ -184,7 +184,7 @@ biocLite("Logolas")
 
 <h3><span class="margin" style = "color:brown"><font size="5.5"><em>Input Format </em></font></span></h3>
 
-<p class = "margin"><font size="4"> In <strong>aRchaic</strong> takes a MutationFeatureFormat file as input, which is a comma separated 
+<p class = "margin"><font size="4"> In <strong>aRchaic</strong> takes a MutationFeatureFormat file as input, which is a comma separated
 .csv file generated from a BAM file through pysam (details in the next subsection). Each row lists the features for a mutation, and the frequency of mutations with similar feature occurring in the BAM file. An example is provided below. </font> </p>
 
 
@@ -265,6 +265,32 @@ optional arguments:
 </p> -->
 
 <p class ="margin" id = "Demo"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></span></font></p>
+
+<p class = "margin"><font size="4"> The primary function of the aRchaic package is <code>aRchaic_cluster()</code> which performs clustering of the samples using a Grade of membership model, assigning to each sample a membership in the different clusters.
+</font></p>
+
+<pre><code>
+  aRchaic::aRchaic_cluster(folders, K,
+                           labs, run_from = "start",
+                           output_dir, save_plot = TRUE)
+
+#' folders: names of the folders containing MutationFeatureFormat files to be pooled
+#' K : the number of clusters to fit
+#' labs: the labels of the samples (defaults to folder name where they belong)
+#' run_from: if "start", will run data processing and clustering steps from scratch.
+             if "gom", performs only the clustering step
+             if "plot", performs just the visualization
+#' output_dir: The output directory where to store the output files and model output
+#' save_plot: if TRUE, it saves the visualizations
+</pre></code>
+
+<p class = "margin"><font size="4"> The function generates as output a <code>model.rda</code> file storing the clustering model results, in the <code> output_dir </code> directory specified by the user. If <code> save_plot = TRUE </code>, it generates a <code> structure.png </code>, a STRUCTURE plot representation of the grades of membership of the samples from the clustering model provided. Also for each cluster <code> k </code>, it generates a logo plot visualization <code> logo_clus_k.png </code> files to demonstrate the structure of clusters. </font></p>
+
+<p class = "margin"><font size="4"> An example visualization pooling the STRUCTURE plot and logo plot visualizations from the <code> structure.png </code> and <code> logo_clus_k.png </code> files are depicted below.
+
+
+
+<p class ="margin" id = "Tutorial"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></span></font></p>
 
 
 <p class = "margin"><font size="4"> In this section we provide an example of how an user can perform exploratory analysis and visualize the mutational profile for a single BAM file using <strong>aRchaic</strong>. The example file we use here is available under <a> data/Skoglund/ </a>. </font></p>

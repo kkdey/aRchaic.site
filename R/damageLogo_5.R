@@ -80,7 +80,7 @@ damageLogo_five <- function(theta_pool,
                             output_width = 1200,
                             output_height = 700,
                             save_plot=TRUE){
-  
+
   if(is.null(output_dir)){output_dir <- getwd();}
   flag <- 0
   if(dim(theta_pool)[2] == 1){
@@ -243,7 +243,7 @@ damageLogo_five <- function(theta_pool,
   } else {
     for(l in 1:length(prop_patterns_list)){
       if(save_plot){
-        png(paste0(output_dir, "logo_", l, ".png"), width=output_width, height = output_height)
+        png(paste0(output_dir, "logo_clus_", l, ".png"), width=output_width, height = output_height)
         damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
                                     probs = prob_mutation[l,],
                                     breaks_theta_vec = breaks_theta[,l, drop=FALSE],
