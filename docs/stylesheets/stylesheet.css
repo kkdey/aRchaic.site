@@ -547,11 +547,22 @@ aside a.button {
 
 code, pre {
   margin-bottom: 20px;
-  margin-left: 2cm;
-  margin-right: 2cm;
+  margin-left: 1.5cm;
+  margin-right: 1.5cm;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 16px;
   color: #222;
+}
+
+codeline {
+  margin-bottom: 20px;
+  margin-left: 0.1cm;
+  margin-right: 0.1cm;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-size: 16px;
+  color: #222;
+  background-color: #f2f8fc;
+  border: solid 1px #dbe7f3;
 }
 
 code {
@@ -874,6 +885,8 @@ footer a:hover {
     content: none;
   }
 }
+
+
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) { }

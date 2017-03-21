@@ -35,9 +35,9 @@
 <a href="#Introduction"> <img src = "../articles/skeleton.svg" width = "120px" height="80px" alt=""> <span style="color:black;">
 <font size="3"> <b> Introduction </b></font>
 </span></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="#Demo"> <img src = "../articles/Bone4.svg"
+<a href="#Set_up"> <img src = "../articles/Bone4.svg"
 width = "120px" height="80px" alt=""> <span style="color:black;">
-<font size="3"> <b> Demo </b></font>
+<font size="3"> <b> Installation </b></font>
 </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="#Tutorial"> <img src = "../articles/skull.svg"
 width = "120px" height="80px" alt=""> <span style="color:black;">
@@ -52,7 +52,7 @@ width = "120px" height="80px" alt=""> <span style="color:black;">
 
 <style>
   .bottom-three {
-     margin-bottom: 1cm;
+     margin-bottom: 2cm;
   }
 </style>
 
@@ -108,9 +108,36 @@ width = "120px" height="30px" alt=""> <span style="color:black;">
 
 <p class ="margin" id = "Introduction"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Introduction </strong></span></font></p>
 
-<p class = "margin"><font size="4"> <strong>aRchaic</strong> is a R/python software package developed by <a href="https://kkdey.github.io/">Kushal K Dey</a> and <a href="https://halasadi.wordpress.com/">Hussein Al Asadi</a> in collaboration with <a href="http://stephenslab.uchicago.edu/">Matthew Stephens</a> and <a href="https://jnpopgen.org/">John Novembre</a>. aRchaic provides tools for visualization, clustering and classification of ancient and/or modern DNA samples based on features highlighting DNA damage patterns. </font> </p>
+<p class = "margin"><font size="5"> <strong>aRchaic</strong> is a R/python software package developed by <a href="https://kkdey.github.io/">Kushal K Dey</a> and <a href="https://halasadi.wordpress.com/">Hussein Al Asadi</a> in collaboration with <a href="http://stephenslab.uchicago.edu/">Matthew Stephens</a> and <a href="https://jnpopgen.org/">John Novembre</a>. aRchaic provides tools for clustering and visualization of ancient and/or modern DNA samples based on DNA damage patterns.  </font> </p>
 
-<p class = "margin"><font size="4"> We provide demos and tutorials on how to apply <strong>aRchaic</strong> below. A pdf version of the vignettes is available at the link below.</font></p>
+<p class = "margin"><font size="5"> aRchaic fits a Grade of Membership (GoM) model, also popularly known as admixture model in population genetics, where each DNA sample (modern/ancient) is allowed to have memberships in multiple clusters. In our model, each cluster is determined by a specific DNA damage profile. aRchaic provides a STRUCTURE plot type visualization of the grades of memberships of the samples in the clusters and also a logo plot representation of the damage profile of each cluster. A demo visualization is provided below. </font></p>
+
+<div style="width:1100px; margin:0 auto;">
+<p><img src="../articles/demo.png" align="left" style="width:1000px;height:900px;"></p>
+</div>
+
+
+<p class="bottom-three">
+</p>
+<p class="bottom-three">
+</p>
+
+
+<p class = "margin"><font size="5"> On the left is a vertical stacked bar chart with each bar representing a sample. The bar is of height 1 and is colored proportionately with the grades of membership in different clusters (there are 3 colors corresponding to 3 clusters in this case). On the right are the logo plot representations of the 3 clusters. A cluster logo plot has several components to it, each component highlighting some damage characteristics. </font></p>
+
+<div style="width:1100px; margin:0 auto;">
+<p><img src="../articles/archaic_plot.png" align="left" style="width:1000px;height:700px;"></p>
+</div>
+
+<p class="bottom-three">
+</p>
+<p class="bottom-three">
+</p>
+
+<p class = "margin"><font size="5"> aRchaic also provides the user other exploratory tools to assess DNA damage - for example, tracking mutational patterns aross reads, frequency distribution of mutational flanking bases, read length distribution over reads with and without comprising of DNA damage etc. It also fits a classification GoM model to classify contaminated samples into "modern" and "ancient" classes, based on DNA damage profiles. </font></p>
+
+<p class = "margin"><font size="5"> Check our documentation of all functions here and a tutorial demonstrating the application of aRchaic and its various functionalities on data.</font></p>
+
 
 <style>
   .list {
@@ -124,43 +151,43 @@ width = "120px" height="30px" alt=""> <span style="color:black;">
 
 
 <!-- <ul class="list">
-<li><font size="4"> Exploratory analysis and powerful visualization of mutational profiles from a BAM file (applicable for both ancient and modern BAM files). </font> </li>
+<li><font size="5"> Exploratory analysis and powerful visualization of mutational profiles from a BAM file (applicable for both ancient and modern BAM files). </font> </li>
 <p></p>
-  <li><font size="4"> Clustering and summary visualization of a pool of ancient and modern BAM files, highlighting differences in patterns of mutational features. </font></li>
+  <li><font size="5"> Clustering and summary visualization of a pool of ancient and modern BAM files, highlighting differences in patterns of mutational features. </font></li>
 <p></p>
-  <li><font size="4"> Classification of ancient and modern BAM files based on mutational profiles. </font></li></ul> -->
+  <li><font size="5"> Classification of ancient and modern BAM files based on mutational profiles. </font></li></ul> -->
 
-<h3><span class="margin" style = "color:brown"><font size="5.5"><em>Requirements </em></font></span></h3>
+<p class ="margin" id = "Set_up"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Set up </strong></color></font></span></p>
 
-<p><span class="margin"><font size="4"> To install and run <strong>aRchaic</strong>, the user needs to have the following (installation instructions provided in the links) </span></font></p>
+<p class = "margin"><font size="5"> To install and run <strong>aRchaic</strong>, the user needs to have the following (installation instructions provided in the links) </font></p>
 
 <ul class="list"><style="list-style-type:circle">
-<li><a href="https://git-scm.com/"> <font size="4"> Git </font> </a></li>
-  <li><a href="https://www.python.org/"> <font size="4"> Python (Version 2 or 3) </font> </a></li>
-  <li><a href="http://pysam.readthedocs.io/en/latest/installation.html"><font size="4"> pysam (>= 0.10.0) </a></li>
-  <li><a href="https://pypi.python.org/pypi/pyfaidx"><font size="4"> pyfaidx (>= 0.4.8.1) </a></li>
-  <li><a href="https://cran.r-project.org/"> <font size="4"> R (&gt;= 3.2.0) </font> </a></li>
-  <li> <font size="4"> R libraries - <a href="https://cran.r-project.org/web/packages/gridBase/index.html"> gridBase </a>, <a href="http://ggplot2.org/"> ggplot2 </a>, <a href="https://github.com/kkdey/maptpx"> maptpx </a>, <a href="https://github.com/kkdey/CountClust"> CountClust </a>, <a href="https://github.com/kkdey/Logolas"> Logolas </a>, <a href="https://github.com/kkdey/classtpx"> classtpx </a> </font>
+<li><a href="https://git-scm.com/"> <font size="5" style="color: #1b3ee8"> Git </font> </a></li>
+  <li><a href="https://www.python.org/"> <font size="5" style="color: #1b3ee8"> Python (Version 2 or 3) </font> </a></li>
+  <li><a href="http://pysam.readthedocs.io/en/latest/installation.html"><font size="5" style="color: #1b3ee8"> pysam (>= 0.10.0) </font> </a></li>
+  <li><a href="https://pypi.python.org/pypi/pyfaidx"><font size="5" style="color: #1b3ee8"> pyfaidx (>= 0.4.8.1) </font></a></li>
+  <li><a href="https://cran.r-project.org/"> <font size="5" style="color: #1b3ee8"> R (&gt;= 3.2.0) </font></a></li>
+  <li> <font size="5" style="color: #1b3ee8"> R libraries - <a href="https://cran.r-project.org/web/packages/gridBase/index.html" font size="5" style="color: #1b3ee8"> gridBase </a>, <a href="http://ggplot2.org/" font size="5" style="color: #1b3ee8"> ggplot2 </a>, <a href="https://github.com/kkdey/maptpx" font size="5" style="color: #1b3ee8"> maptpx </a>, <a href="https://github.com/kkdey/CountClust" font size="5" style="color: #1b3ee8"> CountClust </a>, <a href="https://github.com/kkdey/Logolas" font size="5" style="color: #1b3ee8"> Logolas </a>, <a href="https://github.com/kkdey/classtpx" font size="5" style="color: #1b3ee8"> classtpx </a> </font>
 </li>
 </ul>
 
-<h3><span class="margin" style = "color:brown"><font size="5.5"><em>Installation </em></font></span></h3>
+<h3><span class="margin" style = "color:brown"><font size="6"><em>Installation </em></font></span></h3>
 
-<p class = "margin"><font size="4"> aRchaic uses Python interface for data preprocessing, a demo of which is provided in the next section, and R/RStudio for the main statistical analysis. R can be downloaded from <a href="https://cran.r-project.org/"> CRAN </a>. To start R, Windows users can click on the R GUI that comes with the install. Linux/Mac users can also run R through terminal by typing </font></p>
+<p class = "margin"><font size="5"> aRchaic uses Python interface for data preprocessing and R/RStudio for the main statistical analysis. R can be downloaded from <a href="https://cran.r-project.org/"> CRAN </a>. To start R, users can use the R GUI that comes with the install or run R through terminal by typing </font></p>
 
 <pre><code>
 R
 </code></pre>
 
-<p><span class="margin"><font size="4"> We recommend users to use <a href=https://www.rstudio.com/RStudio> RStudio </a> instead, which is a well maintained GUI for R and is extremely user friendly.</span></font></p>
+<p class = "margin"><font size="5"> We recommend users to install and use <a href=https://www.rstudio.com/RStudio> RStudio </a>, a well maintained GUI for R which is extremely user friendly.</font></p>
 
-<p><span class="margin"><font size="4"> Once in R/RStudio, the user can install  the Github developmental version of the <strong> aRchaic </strong> package through devtools. </span></font></p>
+<p class = "margin"><font size="5"> Once in R/RStudio, the user can install the Github developmental version of the <strong> aRchaic </strong> R package through devtools. </font></p>
 
 <pre><code>
 devtools::install_github("aRchaic")
 </code></pre>
 
-<p><span class="margin"><font size="4"> <strong> aRchaic </strong> automatically loads the packages mentioned above. The routine to manually install the above packages are the following </span></font></p>
+<p class = "margin"><font size="5"> <strong> aRchaic </strong> installs as dependencies all the packages mentioned above. However, to manually install the required packages, the installation instructions are provided below. </font></p>
 
 <pre><code>
 
@@ -182,10 +209,9 @@ biocLite("Logolas")
 <p class="bottom-three">
 </p>
 
-<h3><span class="margin" style = "color:brown"><font size="5.5"><em>Input Format </em></font></span></h3>
+<h3><span class="margin" style = "color:brown"><font size="6"><em>Input Format </em></font></span></h3>
 
-<p class = "margin"><font size="4"> In <strong>aRchaic</strong> takes a MutationFeatureFormat file as input, which is a comma separated
-.csv file generated from a BAM file through pysam (details in the next subsection). Each row lists the features for a mutation, and the frequency of mutations with similar feature occurring in the BAM file. An example is provided below. </font> </p>
+<p class = "margin"><font size="5"> <strong>aRchaic</strong> takes a MutationFeatureFormat (MFF) file as input, which is a comma separated (.csv) file generated from a BAM file using pysam. Each row of the MFF file generated lists the features for a mutation, and the frequency of mutations with similar feature occurring in the BAM file. An example is provided below. </font> </p>
 
 
 <pre style="color:blue;"><code style="color:blue;">
@@ -200,11 +226,11 @@ CA->GC,22,52,C,C,-,1
 GG->AG,39,0,C,G,-,22
 </code></pre>
 
-<p class = "margin"><font size="4"> In the first row above, the mutational feature is TG → AC, 1, 45, C, C and the count is 7. To be more specific, the muation corresponds to a G →  A  mismatch, which is flanked by T on the 5’ end and C on the 3’ end (this is also referred to as mutation trio). The mismatch occurs 1 base from the start of the read and 45 bases from end of the read, where start and end are determined with respect to the reference genome to which the read is mapped. Furthermore, the read corresponding to the mutation is flanked by G at the 5’ strand-break and C at the 3’ strand-break. The "-" signifies that the mismatch lies on read mapped to the reverse strand. </font></p>
+<p class = "margin"><font size="5"> In the first row above, the mutational feature is TG → AC, 1, 45, C, C and the count is 7. To be more specific, the mutation corresponds to a G →  A  mismatch, which is flanked by T on the 5’ end and C on the 3’ end (this is also referred to as mutation trio). The mismatch occurs 1 base from the start of the read and 45 bases from end of the read, where start and end are the 5' and 3'ends with respect to the reference genome to which the read is mapped. Furthermore, it tells us that the read corresponding to the mutation is flanked by G at the 5’ strand-break and C at the 3’ strand-break. The "-" signifies that the mismatch lies on read mapped to the reverse strand. </font></p>
 
-<h3><span class="margin" style = "color:brown"><font size="5.5"><em>Generating MutationFeatureFormat File </em></font></span></h3>
+<h3><span class="margin" style = "color:brown"><font size="6"><em>Generating MFF File from BAM </em></font></span></h3>
 
-<p class = "margin"><font size="4"> The user can generate the MutationFeatureFormat file using the "generate_summary_files.py" file under "aRchaic/python/". The python script requires the BAM file (.bam) and the corresponding index file (.bam.bai), which is generated from the BAM file through samtools and the reference genome to which the reads in the BAM file are mapped to. </font></p>
+<p class = "margin"><font size="5"> The user can generate the MutationFeatureFormat (MFF) file using the "generate_summary_files.py" file. The python script requires the BAM file (.bam) for the sample along with its corresponding index file (.bam.bai) Also it needs the user to load the reference genome to which the reads in the BAM file are mapped to. A description of the code to generate MFF file from BAM is provided below. </font></p>
 
 
 <pre><code>
@@ -227,35 +253,35 @@ optional arguments:
 
 
 <!-- <ul class="list">
-<li><font size="4"> The substitution type (C → T , C → A, C → G, T → A, T → C, T → G) and the flanking bases to the left (5' end) and right (3' end).  </font> </li>
+<li><font size="5"> The substitution type (C → T , C → A, C → G, T → A, T → C, T → G) and the flanking bases to the left (5' end) and right (3' end).  </font> </li>
 <p></p>
-  <li><font size="4"> The position of the mutation from the ends of the read. </font></li>
+  <li><font size="5"> The position of the mutation from the ends of the read. </font></li>
 <p></p>
-  <li><font size="4"> Which strand - forward or reverse - does the mutation occur in. </font></li>
+  <li><font size="5"> Which strand - forward or reverse - does the mutation occur in. </font></li>
 <p></p>
-  <li><font size="4"> The base from the reference genome at the 5' strand break of the fragment corresponding to the read. </font></li>
+  <li><font size="5"> The base from the reference genome at the 5' strand break of the fragment corresponding to the read. </font></li>
   </ul>
 
 <p><span class="margin"> <font size="5.5"> Graphical Representation </font> </span></p>
 
-<p class = "margin"><font size="4"> We provide a rich visualization of a sample mutational profile of an ancient Sardinian sample as follows.</font> </p>
+<p class = "margin"><font size="5"> We provide a rich visualization of a sample mutational profile of an ancient Sardinian sample as follows.</font> </p>
 
 <div style="width:800px; margin:0 auto;">
 <p><img src="../articles/aRchaic_plot.png" align="top" style="width:800px;height:500px;"></p>
 </div>
 
-<p class = "margin"><font size="4"> From the above plot, it is easy to see that C → T mutations are abundant in that sample. Also the mutation trend plot demonstrates that the mutations are mainly concentrated at the ends of the reads and mutational rate decays quickly as one moves inwards from the ends of the reads. We also see an enrichment of purines (A and G) at the 5' strand break. All these features are characteristic of ancient DNA samples and act as a validation check. </font></p>
+<p class = "margin"><font size="5"> From the above plot, it is easy to see that C → T mutations are abundant in that sample. Also the mutation trend plot demonstrates that the mutations are mainly concentrated at the ends of the reads and mutational rate decays quickly as one moves inwards from the ends of the reads. We also see an enrichment of purines (A and G) at the 5' strand break. All these features are characteristic of ancient DNA samples and act as a validation check. </font></p>
 
 <p><span class="margin"> <font size="5.5"> Clustering </font> </span></p>
 
-<p class = "margin"><font size="4"> When provided with a pool of ancient and/or modern samples, one can use these mutational features to cluster the samples. For clustering, we use a Grade of Membership (GoM) model, similar to <a href="https://www.genetics.ucla.edu/software/admixture/">ADMIXTURE </a> and <a href="https://bioconductor.org/packages/release/bioc/html/CountClust.html">CountClust </a>. It represents each sample as having grades of membership in underlying clusters. A demo for how the clustering model works is provided below. </font></p>
+<p class = "margin"><font size="5"> When provided with a pool of ancient and/or modern samples, one can use these mutational features to cluster the samples. For clustering, we use a Grade of Membership (GoM) model, similar to <a href="https://www.genetics.ucla.edu/software/admixture/">ADMIXTURE </a> and <a href="https://bioconductor.org/packages/release/bioc/html/CountClust.html">CountClust </a>. It represents each sample as having grades of membership in underlying clusters. A demo for how the clustering model works is provided below. </font></p>
 
 <div style="width:800px; margin:0 auto;">
 <p><img src="../articles/overview.png" align="top" style="width:800px;height:500px;"></p>
 </div>
 
 <p><span class="margin"> <font size="5.5"> Classification </font> </span></p>
-<p class = "margin"><font size="4"> For the classification problem, we consider a pool of known ancient and modern samples and train a classifier (SVM and a classification GoM model) on these samples. Once trained, this classifier is then fitted on new test sample - control samples or contaminated samples - with the aim to detect what percentage of reads of the sample are ancient (or modern) </font></p>
+<p class = "margin"><font size="5"> For the classification problem, we consider a pool of known ancient and modern samples and train a classifier (SVM and a classification GoM model) on these samples. Once trained, this classifier is then fitted on new test sample - control samples or contaminated samples - with the aim to detect what percentage of reads of the sample are ancient (or modern) </font></p>
 
 <p class="bottom-three">
 </p>f
@@ -264,17 +290,17 @@ optional arguments:
 <p class="bottom-three">
 </p> -->
 
-<p class ="margin" id = "Demo"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></span></font></p>
+<h3><span class="margin" style = "color:brown"><font size="6"><em> Clustering and Output files </em></font></span></h3>
 
-<p class = "margin"><font size="4"> The primary function of the aRchaic package is <code>aRchaic_cluster()</code> which performs clustering of the samples using a Grade of membership model, assigning to each sample a membership in the different clusters.
+<p class = "margin"><font size="5"> The primary function of the aRchaic package is <codeline>aRchaic_cluster()</codeline> which performs clustering of the samples using a Grade of membership model, assigning to each sample a membership in the different clusters.
 </font></p>
 
 <pre><code>
   aRchaic::aRchaic_cluster(folders, K,
                            labs, run_from = "start",
-                           output_dir, save_plot = TRUE)
+                           output_dir, save_plot = TRUE, .....)
 
-#' folders: names of the folders containing MutationFeatureFormat files to be pooled
+#' folders: names of the folder (s) containing MutationFeatureFormat files from one or more sources
 #' K : the number of clusters to fit
 #' labs: the labels of the samples (defaults to folder name where they belong)
 #' run_from: if "start", will run data processing and clustering steps from scratch.
@@ -284,18 +310,16 @@ optional arguments:
 #' save_plot: if TRUE, it saves the visualizations
 </pre></code>
 
-<p class = "margin"><font size="4"> The function generates as output a <code>model.rda</code> file storing the clustering model results, in the <code> output_dir </code> directory specified by the user. If <code> save_plot = TRUE </code>, it generates a <code> structure.png </code>, a STRUCTURE plot representation of the grades of membership of the samples from the clustering model provided. Also for each cluster <code> k </code>, it generates a logo plot visualization <code> logo_clus_k.png </code> files to demonstrate the structure of clusters. </font></p>
-
-<p class = "margin"><font size="4"> An example visualization pooling the STRUCTURE plot and logo plot visualizations from the <code> structure.png </code> and <code> logo_clus_k.png </code> files are depicted below.
+<p class = "margin"><font size="5"> The function generates as output a <codeline>model.rda</codeline> file storing the clustering model results, in the <codeline> output_dir </codeline> directory specified by the user. If <codeline> save_plot = TRUE </codeline>, it generates a <codeline> structure.png </codeline>, a STRUCTURE plot representation of the grades of membership of the samples from the clustering model provided. Also for each cluster <codeline> k </codeline>, it generates a logo plot visualization <codeline> logo_clus_k.png </codeline> files to demonstrate the structure of clusters. </font></p>
 
 
 
-<p class ="margin" id = "Tutorial"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></span></font></p>
+<!-- <p class ="margin" id = "Tutorial"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></span></font></p>
 
 
-<p class = "margin"><font size="4"> In this section we provide an example of how an user can perform exploratory analysis and visualize the mutational profile for a single BAM file using <strong>aRchaic</strong>. The example file we use here is available under <a> data/Skoglund/ </a>. </font></p>
+<p class = "margin"><font size="5"> In this section we provide an example of how an user can perform exploratory analysis and visualize the mutational profile for a single BAM file using <strong>aRchaic</strong>. The example file we use here is available under <a> data/Skoglund/ </a>. </font></p>
 
-<p class = "margin"><font size="4"> First we use Python interface and the pysam package to extract the mutation signature counts data for the sample BAM file. </font></p>
+<p class = "margin"><font size="5"> First we use Python interface and the pysam package to extract the mutation signature counts data for the sample BAM file. </font></p>
 
 
 <style>
@@ -317,7 +341,7 @@ optional arguments:
   head(data.frame(t(out)))
 </code></pre>
 
-<p class = "margin"><font size="4"> The output would look like </font></p>
+<p class = "margin"><font size="5"> The output would look like </font></p>
 
 <pre style="color:blue;"><code style="color:blue;">
                     Ajv59.hs37d5.fa.merged.q30
@@ -329,7 +353,7 @@ optional arguments:
   AA->CA_-_A_A_12                          1
 </code></pre>
 
-<p class = "margin"><font size="4"> We can club the signatures such that we only retain the left strand break base and the minimum distance of the mutation from the ends of the reads.We also club the signatures that are mutations of G and A (purines) to that of C and T (pyrimidines) on the opposite strand (for example G → A is clubbed with C → T on the opposite strand). </font></p>
+<p class = "margin"><font size="5"> We can club the signatures such that we only retain the left strand break base and the minimum distance of the mutation from the ends of the reads.We also club the signatures that are mutations of G and A (purines) to that of C and T (pyrimidines) on the opposite strand (for example G → A is clubbed with C → T on the opposite strand). </font></p>
 
 <pre><code>
   clubbed_data <- club_signature_counts(out, flanking_bases = 1)
@@ -345,7 +369,7 @@ optional arguments:
   AC->AA_-_A_14                          3
 </code></pre>
 
-<p class = "margin"><font size="4"> We normalize the clubbed signature counts data and then plot the <strong> aRchaic</strong> logo plot. </font></p>
+<p class = "margin"><font size="5"> We normalize the clubbed signature counts data and then plot the <strong> aRchaic</strong> logo plot. </font></p>
 
 <pre><code>
   clubbed_data_normed <- clubbed_data/sum(clubbed_data)
@@ -355,11 +379,8 @@ optional arguments:
 
 </code></pre>
 
-<div style="width:800px; margin:0 auto;">
-<p><img src="../articles/skoglund_plot.png" align="top" style="width:700px;height:500px;"></p>
-</div>
 
-<p class = "margin"><font size="4">  In <strong> aRchaic </strong>, we
+<p class = "margin"><font size="5">  In <strong> aRchaic </strong>, we
 also provide option to plot the read length distribution for the BAM file.
 We also provide read length distribution for all reads, reads with C → T damages and reads with C → T damages within 5 bases from the ends of reads.
 </strong></font></p>
@@ -374,11 +395,9 @@ We also provide read length distribution for all reads, reads with C → T damag
                            cex_legend = 0.7)
 </code></pre>
 
-<div style="width:800px; margin:0 auto;">
-<p><img src="../articles/readlength_plot.png" align="top" style="width:700px;height:500px;"></p>
-</div>
 
-<p class = "margin"><font size="4">  There is also an option to plot the mutation trends from the ends of the reads from 5' and 3' ends of the reads. See the code below </font></p>
+
+<p class = "margin"><font size="5">  There is also an option to plot the mutation trends from the ends of the reads from 5' and 3' ends of the reads. See the code below </font></p>
 
 <pre><code>
   color=c("red","blue","cornflowerblue","black","cyan","darkblue",
@@ -405,8 +424,130 @@ We also provide read length distribution for all reads, reads with C → T damag
 <div style="width:800px; margin:0 auto;">
 <p><img src="../articles/mutation_trend_plot.png" align="top" style="width:700px;height:400px;"></p>
 </div>
-
+-->
 <p class ="margin" id = "Tutorial"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Tutorial </strong></span></font></p>
+
+<ol style="width:950px; margin:0 auto;"><font size="5"><color = "brown;">
+        <li>
+            <a href="#mff"> Generate MFF file from BAM: an example </a>
+        </li>
+        <li>
+            <a href="#aRchaic_pool"> aRchaic_pool() : aggregate MFF files into signature counts matrix </a>
+        </li>
+        <li>
+            <a href="#aRchaic_view"> aRchaic_view() : Viewing a MFF file </a>
+        </li>
+        <li>
+            <a href="#aRchaic_view"> aRchaic_view_pool() : Viewing all MFF files in a folder </a>
+        </li>
+        <li>
+            <a href="#aRchaic_cluster"> aRchaic_cluster() : Clustering MFF files from different sources </a>
+        </li>
+        <li>
+            <a href="#aRchaic_class"> aRchaic_class() : Classification of samples based on mutation features </a>
+        </li>
+            <li>
+                <a href="#read_length_distribution"> read_length_distribution(): Read length distribution of each MFF file </a>
+            </li>
+            <li>
+                <a href="#aRchaic_mutation_trend"> aRchaic_mutation_trend(): Mutation trends along a read for each MFF file </a>
+            </li>
+</color></font></ol>
+
+<h3><span class="margin" style = "color:brown" id = "mff"><font size="5.5"><em>Generate MFF file from BAM: an example </em></font></span></h3>
+
+<p class = "margin"><font size="5"> We demonstrate how we generate a MFF file from an example BAM file. We run <codeline> generate_summary_bams </codeline> on the BAM file <codeline> example.bam </codeline> via terminal. </font></p>
+
+<pre><code> generate_summary_bams example.bam ref.fa  </code></pre>
+
+<p class = "margin"><font size="5"> The code will take around 5 minutes to run and generate the MFF file <codeline> example.csv </codeline> as output. </font></p>
+
+<p class = "margin"><font size="5"> The MFF file is a <codeline> .csv </codeline> file, which records the counts of different mutational features. The first few lines of <codeline> example.csv </codeline> are as follows. </font></p>
+
+<pre style="color:blue;"><code style="color:blue;">
+TG->AC,1,45,G,C,-,7
+CG->AT,38,31,G,G,-,1
+CC->TC,56,4,G,C,+,1
+TG->AT,93,28,T,T,-,1
+AC->TA,1,39,T,G,+,8
+CA->CA,1,50,C,C,+,1
+CA->GT,4,83,T,T,+,1
+CA->GC,22,52,C,C,-,1
+GG->AG,39,0,C,G,-,22
+</code></pre>
+
+
+<h3><span class="margin" style = "color:brown" id = "aRchaic_view"><font size="5.5"><em>aRchaic_view() : Viewing a MFF file</em></font></span></h3>
+
+<p class = "margin"><font size="5"> One can view the mutational features in a MutationFeatureFormat (MFF) file using the <codeline> aRchaic_view() </codeline> function. It displays a logo plot of the mutational patterns for a given MFF file (for a particular sample). </font></p>
+
+<pre><code>
+  aRchaic_view (dir = "../data/Skoglund/",
+                file = "Ajv59.hs37d5.fa.merged.q30.csv"
+                breaks = c(-1, seq(1,20,1)),
+                flanking_bases =1,
+                logo.control = list(),
+                title = "Skoglund aDNA",
+                output_dir = NULL,
+                save_plot = TRUE)
+</code></pre>
+
+<p class = "margin"><font size="5"> The output from this code is the following logo plot. </font></p>
+
+<div style="width:800px; margin:0 auto;">
+<p><img src="../articles/skoglund_plot.png" align="top" style="width:900px;height:500px;"></p>
+</div>
+
+<p class = "margin"><font size="5">  We supply as input arguments, the input directory <codeline>dir</codeline> along with the file name <codeline>file</codeline>. The code first checks if the aggregate signature file (.rda file that is generated by aRchaic_pool or aRchaic_cluster) is present, which leads to faster processing. Else it performs the signature aggregation step for the concerned file only before the logo plot visualization. </font></p>
+
+
+<p class = "margin"><font size="5">  There are also control parameters to this plot that the user can toggle with. <codeline>breaks</codeline>represents how to bin the locations of the mutations on the read from each end. <codeline>breaks = c(-1, seq(1,20,1)) </codeline> means that only mutations occurring inside of 20 bases from ends of the reads are considered and each position is assigned to a bin of its own. <codeline>breaks = c(-1, seq(1,20,2)) </codeline> will pool mutations in consecutive bases in a single bin- for example, mutations in places 1 and 2 from the ends of the read will be assigned to bin 1 and so on. <codeline>flanking_bases </codeline> represents the number of bases to the left and right of the mutation we record in our feature. The default is 1, which means, we only record the base to the immediate left and right of the mutation (this is also called a mutation trio). </font></p>
+
+
+<p class = "margin"><font size="5">  <codeline>title</codeline> represents the title of the logo plot representation. If <codeline>save_plot = TRUE</codeline>, then the logo plot will be saved in the <codeline>output_dir</codeline> provided. If <codeline>output_dir = NULL</codeline>, the plot is saved in the working directory. <codeline>logo.control()</codeline> allows the user to play with the settings of the logo plot. </font></p>
+
+
+<h3><span class="margin" style = "color:brown" id = "read_length_distribution"><font size="5.5"><em>read_length_distribution(): Read length distribution of each MFF file</em></font></span></h3>
+
+<p class = "margin"><font size="5"> This function provides an estimated read length distribution of all reads in a MFF file. Every mutation in a MFF file comes from a read, for which we record the distance from the ends of the read. This provides us with the length of the read by summing the distance from the two ends. </font</p>
+
+<p class = "margin"><font size="5">  <codeline> read_length_distribution() </codeline> provides density plot of read length distribution for reads containing any mutation, just C -> T mutations and the reads that contain a C->T mutation inside a small distance, denoted here by <codeline> end_break </codeline>, from one end of trhe read. Note here that C->T mutations at the ends of the read are a feature of ancient reads, so the latter gives an idea of the read length for the ancient reads. This is an exploratory scheme that can help us compare read lengths of ancient and modern reads in a contaminated sample.</font></p>
+
+<p class = "margin"><font size="5"> We present an example of applying this function on a single file of the directory <codeline> dir </codeline>, here denoted by <codeline> pattern </codeline>. The user can add a vector of file names under <codeline> pattern </codeline> if he wants to see the read length distribution for multiple samples. </font></p>
+
+<pre><code>
+  read_length_distribution(dir = "../data/Skoglund/",
+                         pattern = "Ajv59.hs37d5.fa.merged.q30.csv",
+                         end_break = 5,
+                         plot_layout = c(1,1),
+                         cols = c("red", "green", "blue"),
+                         cex_legend = 0.5,
+                         cex.main = 0.5)
+
+</code></pre>
+
+<p class = "margin"><font size="5"> The output from this function would look like the following </font></p>
+
+<div style="width:800px; margin:0 auto;">
+<p><img src="../articles/readlength_plot.png" align="top" style="width:700px;height:500px;"></p>
+</div>
+
+<p class = "margin"><font size="5"> We provide plot options in the form of <codeline> plot_layout </codeline> to fix the plotting window design, <codeline> cols </codeline> vector of colors for coloring the density plots for the three cases (reads with all mutations, with C->T mutations, with C->T mutations inside <codeline> end_break </codeline> from the end). The size of the legend and title are fixed by <codeline> cex.legend </codeline> and <codeline> cex.main </codeline>.</font</p>
+
+<p class = "margin"><font size="5"> If <codeline> pattern = NULL </codeline>, then the function is run on all MFF files in the folder and the plots are saved in the <codeline> plot_layout </codeline> layout. An example is given below. </font></p>
+
+<pre><code>
+  read_length_distribution(dir = "../data/Allentoft/",
+                         pattern = NULL,
+                         end_break = 5,
+                         plot_layout = c(3,3),
+                         cols = c("red", "green", "blue"),
+                         cex_legend = 0.5,
+                         cex.main = 0.5)
+
+</code></pre>
+
+
 
 <p class ="margin" id = "Extras"><span style="color:brown;"><font size="7"><strong> Extras </strong></span></font></p>
 
