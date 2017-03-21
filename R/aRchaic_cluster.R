@@ -45,18 +45,19 @@ aRchaic_cluster = function(folders,
                                  legend_text_size = 5)
 
   logo.control.default <- list(sig_names = NULL, ic.scale=TRUE,
-                    max_pos = 20, flanking_bases=1,
-                    yscale_change = TRUE, xaxis=TRUE,
-                    yaxis=TRUE, xlab = " ", xaxis_fontsize=5,
-                    xlab_fontsize=10, title_aligner = 18,
-                    y_fontsize=10, title_fontsize = 20,
-                    mut_width=2, start=0.0001,
-                    renyi_alpha = 1, pop_names=paste0("Cluster ",1:K),
-                    logoport_x = 0.25, logoport_y= 0.50, logoport_width= 0.28, logoport_height= 0.40,
-                    lineport_x = 0.9, lineport_y=0.40, lineport_width=0.32, lineport_height=0.28,
-                    breaklogoport_x = 1.00, breaklogoport_y = 0.40, breaklogoport_width=0.40, breaklogoport_height=0.50,
-                    barport_x = 0.58, barport_y=0.60, barport_width=0.25, barport_height=0.25,
-                    output_width = 1200, output_height = 700)
+                               max_pos = 20, flanking_bases=1,
+                               yscale_change = TRUE, xaxis=TRUE,
+                               yaxis=TRUE, xlab = " ", xaxis_fontsize=20,
+                               xlab_fontsize=10, title_aligner = 11,
+                               y_fontsize=20, title_fontsize = 35,
+                               mut_width=2, start=0.0001,
+                               renyi_alpha = 5, inflation_factor = c(3,1,3),
+                               pop_names = paste0("Cluster : ", 1:K),
+                               logoport_x = 0.25, logoport_y= 0.50, logoport_width= 0.25, logoport_height= 0.50,
+                               lineport_x = 0.9, lineport_y=0.40, lineport_width=0.32, lineport_height=0.28,
+                               breaklogoport_x = 0.94, breaklogoport_y = 0.40, breaklogoport_width=0.30, breaklogoport_height=0.45,
+                               barport_x = 0.60, barport_y=0.60, barport_width=0.25, barport_height=0.25,
+                               output_width = 1200, output_height = 700)
 
   topics.control.default <- list(bf = FALSE, kill = 2, ord = TRUE, verb = 1, admix = TRUE,
                         nbundles = 1, use_squarem = FALSE, init.adapt = FALSE, type = "full",
@@ -214,7 +215,7 @@ aRchaic_cluster = function(folders,
         topic_clus <- get(load(paste0(output_dir, "model.rda")))
       }
     }else if(gom_method == "independent"){
-      message("Fitting the Grade of Membership Model - full version - due to Y. Shiraichi and M. Stephens")
+      message("Fitting the Grade of Membership Model - independent version - due to Y. Shiraichi and M. Stephens")
       signature_set <- colnames(pooled_data)
       sig_split <- t(sapply(1:length(signature_set), function(x) return(strsplit(signature_set[x], "")[[1]][1:8])))
       new_sig_split <- matrix(0, dim(sig_split)[1], 3);

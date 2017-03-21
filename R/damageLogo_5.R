@@ -53,12 +53,13 @@ damageLogo_five <- function(theta_pool,
                             xlab = " ",
                             xaxis_fontsize=5,
                             xlab_fontsize=10,
-                            title_aligner = 8,
+                            title_aligner = 18,
                             y_fontsize=10,
                             title_fontsize = 20,
                             mut_width=2,
                             start=0.0001,
                             renyi_alpha = 1,
+                            inflation_factor = 1,
                             pop_names=paste0("Cluster ",1:dim(theta_pool)[2]),
                             logoport_x = 0.25,
                             logoport_y= 0.50,
@@ -81,6 +82,9 @@ damageLogo_five <- function(theta_pool,
                             output_height = 700,
                             save_plot=TRUE){
 
+  if(length(inflation_factor)==1){
+    inflation_factor <- rep(inflation_factor, dim(theta_pool)[2])
+  }
   if(is.null(output_dir)){output_dir <- getwd();}
   flag <- 0
   if(dim(theta_pool)[2] == 1){
@@ -155,7 +159,7 @@ damageLogo_five <- function(theta_pool,
     }
   }
 
-  ic <- damage.ic(prop_patterns_list, alpha=renyi_alpha)
+  ic <- damage.ic(prop_patterns_list, alpha=renyi_alpha, inflation_factor = inflation_factor)
 
   grob_list <- list()
   if(flag == 1){
@@ -460,10 +464,10 @@ damageLogo.pos.str.skeleton <- function(pwm,
   }
 
   if(is.null(pop_name)){
-    grid.text("Logo plot", y = unit(1, "npc") + unit(title_aligner, "lines"),
+    grid.text("Logo plot", x = unit(1.5, "npc"), y = unit(1, "npc") + unit(title_aligner, "lines"),
               gp = gpar(fontsize = title_fontsize))
   }else{
-    grid.text(paste0(pop_name), x = unit(1.3, "npc"), y = unit(title_aligner, "lines"),
+    grid.text(paste0(pop_name), x = unit(1.5, "npc"), y = unit(title_aligner, "lines"),
               gp = gpar(fontsize = title_fontsize, col="black"))
   }
 
@@ -548,6 +552,7 @@ plot_logo <- function(breaks_theta_vec){
   color_profile <- list("type" = "per_column",
                         "col" = c("blue", "red"))
 
+
   logomaker(mat,
             color_profile = color_profile,
             hist=TRUE,
@@ -558,8 +563,8 @@ plot_logo <- function(breaks_theta_vec){
             xlab = "",
             ylab = "",
             yaxis=FALSE,
-            main_fontsize = 15,
-            xaxis_fontsize = 15,
+            main_fontsize = 20,
+            xaxis_fontsize = 20,
             col_line_split="black",
             newpage=FALSE)
 }
@@ -592,14 +597,19 @@ ic_computer_2 <-function(mat, alpha) {
       stop("alpha value must be greater than 0")
     }
     else{
-      ic[i] <- log(length(which(mat[,i]!=0.00)), base=2) - (1/(1-alpha))* log (sum(mat[,i]^{alpha}), base=2)
+      ll <- length(which(mat[,i]!=0.00))
+      ic[i] <- (1/(1-alpha))* log (sum(rep(1/ll, ll)^{alpha}), base=2) - (1/(1-alpha))* log (sum(mat[,i]^{alpha}), base=2)
     }
   }
   return(ic)
 }
 
 
-damage.ic<-function(pwm, alpha=1) {
+damage.ic<-function(pwm, alpha=1, inflation_factor = c(1,1,1)) {
+  if(length(inflation_factor) != ncol(pwm[[1]])){
+    stop("inflation factor vector size
+         must equal to the number of sites - flanking bases + mutation")
+  }
   npos<-ncol(pwm[[1]])
   ic<- matrix(0, npos, length(pwm))
 
@@ -609,7 +619,7 @@ damage.ic<-function(pwm, alpha=1) {
       mat <- cbind(mat, pwm[[j]][,i])
     }
     mat_clean <- mat[rowSums(mat) != 0,]
-    ic[i,] <- ic_computer_2(mat_clean, alpha)
+    ic[i,] <- inflation_factor[i]*ic_computer_2(mat_clean, alpha)
   }
 
   return(ic)
@@ -1297,12 +1307,12 @@ plot_graph <- function(probs, max_pos, max_prob, col="red",
        type = "b", xaxt = "n", yaxt = "n", cex = cex, pch=pch, col=col, main=main,
        cex.main=cex.main, ylab="", xlab="")
   axis(side = 1, at = floor(seq(1, max_pos, length.out=5)), cex.axis = cex.axis, lwd.ticks = 1, tck=-0.05,
-       cex.lab=1, mgp=c(1, 0.5, 0))
-  title(xlab = xlab, mgp=c(1.5,1,0), cex.lab=1.2)
+       cex.lab=2, mgp=c(2.5, 0.5, 0))
+  title(xlab = xlab, mgp=c(2.5,1.5,0), cex.lab=1.8)
   ylimit <- c(0.0, 0.5, 1.0)*max_prob
   axis(side = 2, at = c(0.0, 0.5, 1.0), labels = round(ylimit,2), cex.axis = cex.axis, lwd.ticks=1, tck=-0.05,
-       cex.lab=1, mgp=c(1, 0.5, 0))
-  title(ylab = ylab, mgp=c(1.8,1,0), cex.lab=1.2)
+       cex.lab=2, mgp=c(2.5, 0.5, 0))
+  title(ylab = ylab, mgp=c(2.5,1,0), cex.lab=1.8)
 }
 
 
