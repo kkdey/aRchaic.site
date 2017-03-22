@@ -16,8 +16,7 @@ aRchaic_view = function(file,
                         flanking_bases =1,
                         logo.control = list(),
                         title = NULL,
-                        output_dir = NULL,
-                        save_plot = TRUE){
+                        output_dir = NULL){
 
   header <- head(strsplit(rev((as.vector(strsplit(file, "/" )[[1]])))[1], ".csv")[[1]],1)
   if(is.null(title)){
@@ -82,7 +81,6 @@ aRchaic_view = function(file,
 
 
   do.call(damageLogo_five, append(list(theta_pool = temp,
-                                       output_dir = output_dir,
-                                       save_plot = save_plot),
+                                       output_dir = output_dir),
                                   logo.control))
   }

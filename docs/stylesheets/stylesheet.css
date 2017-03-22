@@ -559,7 +559,7 @@ codeline {
   margin-left: 0.1cm;
   margin-right: 0.1cm;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 16px;
+  font-size: 20px;
   color: #222;
   background-color: #f2f8fc;
   border: solid 1px #dbe7f3;
@@ -660,6 +660,7 @@ form {
 #main-content h3 {
   margin-top: 24px;
   margin-bottom: 8px;
+  margin-left: 5px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
   font-weight: bold;
@@ -686,7 +687,7 @@ form {
 h4:before {
   padding-right: 0.3em;
   margin-left: -2.8em;
-  content: "////";
+  content: "***";
   color: #9ddcff;
 }
 

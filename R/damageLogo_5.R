@@ -79,8 +79,7 @@ damageLogo_five <- function(theta_pool,
                             barport_height=0.25,
                             output_dir = NULL,
                             output_width = 1200,
-                            output_height = 700,
-                            save_plot=TRUE){
+                            output_height = 700){
 
   if(length(inflation_factor)==1){
     inflation_factor <- rep(inflation_factor, dim(theta_pool)[2])
@@ -164,7 +163,6 @@ damageLogo_five <- function(theta_pool,
   grob_list <- list()
   if(flag == 1){
     l = 1
-    if(save_plot){
     png(paste0(output_dir, "logo_", pop_names[l], ".png"), width=output_width, height = output_height)
     damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
                                 probs = prob_mutation[l,],
@@ -203,50 +201,49 @@ damageLogo_five <- function(theta_pool,
                                 barport_width = barport_width,
                                 barport_height = barport_height)
     dev.off()
-    }else{
-      l=1
-      par(new=TRUE)
-      grid.newpage()
-      damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
-                                  probs = prob_mutation[l,],
-                                  breaks_theta_vec = breaks_theta[,l, drop=FALSE],
-                                  strand_theta_vec = strand_theta[l,],
-                                  ic = ic[,l],
-                                  max_pos = max_pos,
-                                  max_prob = max_prob,
-                                  ic.scale = ic.scale,
-                                  yscale_change = yscale_change,
-                                  xlab = xlab,
-                                  xaxis=xaxis,
-                                  yaxis=yaxis,
-                                  xaxis_fontsize=xaxis_fontsize,
-                                  xlab_fontsize=xlab_fontsize,
-                                  title_aligner = title_aligner,
-                                  y_fontsize=y_fontsize,
-                                  title_fontsize = title_fontsize,
-                                  mut_width=mut_width,
-                                  start=start,
-                                  pop_name = pop_names[l],
-                                  logoport_x = logoport_x,
-                                  logoport_y= logoport_y,
-                                  logoport_width= logoport_width,
-                                  logoport_height= logoport_height,
-                                  lineport_x = lineport_x,
-                                  lineport_y= lineport_y,
-                                  lineport_width=lineport_width,
-                                  lineport_height=lineport_height,
-                                  breaklogoport_x = breaklogoport_x,
-                                  breaklogoport_y = breaklogoport_y,
-                                  breaklogoport_width=breaklogoport_width,
-                                  breaklogoport_height=breaklogoport_height,
-                                  barport_x = barport_x,
-                                  barport_y = barport_y,
-                                  barport_width = barport_width,
-                                  barport_height = barport_height)
-    }
+    # }else{
+    #   l=1
+    #   par(new=TRUE)
+    #   grid.newpage()
+    #   damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
+    #                               probs = prob_mutation[l,],
+    #                               breaks_theta_vec = breaks_theta[,l, drop=FALSE],
+    #                               strand_theta_vec = strand_theta[l,],
+    #                               ic = ic[,l],
+    #                               max_pos = max_pos,
+    #                               max_prob = max_prob,
+    #                               ic.scale = ic.scale,
+    #                               yscale_change = yscale_change,
+    #                               xlab = xlab,
+    #                               xaxis=xaxis,
+    #                               yaxis=yaxis,
+    #                               xaxis_fontsize=xaxis_fontsize,
+    #                               xlab_fontsize=xlab_fontsize,
+    #                               title_aligner = title_aligner,
+    #                               y_fontsize=y_fontsize,
+    #                               title_fontsize = title_fontsize,
+    #                               mut_width=mut_width,
+    #                               start=start,
+    #                               pop_name = pop_names[l],
+    #                               logoport_x = logoport_x,
+    #                               logoport_y= logoport_y,
+    #                               logoport_width= logoport_width,
+    #                               logoport_height= logoport_height,
+    #                               lineport_x = lineport_x,
+    #                               lineport_y= lineport_y,
+    #                               lineport_width=lineport_width,
+    #                               lineport_height=lineport_height,
+    #                               breaklogoport_x = breaklogoport_x,
+    #                               breaklogoport_y = breaklogoport_y,
+    #                               breaklogoport_width=breaklogoport_width,
+    #                               breaklogoport_height=breaklogoport_height,
+    #                               barport_x = barport_x,
+    #                               barport_y = barport_y,
+    #                               barport_width = barport_width,
+    #                               barport_height = barport_height)
+    # }
   } else {
     for(l in 1:length(prop_patterns_list)){
-      if(save_plot){
         png(paste0(output_dir, "logo_clus_", l, ".png"), width=output_width, height = output_height)
         damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
                                     probs = prob_mutation[l,],
@@ -285,44 +282,44 @@ damageLogo_five <- function(theta_pool,
                                     barport_width = barport_width,
                                     barport_height = barport_height)
         dev.off()
-      }else{
-        damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
-                                    probs = prob_mutation[l,],
-                                    breaks_theta_vec = breaks_theta[,l, drop=FALSE],
-                                    strand_theta_vec = strand_theta[l,],
-                                    ic = ic[,l],
-                                    max_pos = max_pos,
-                                    max_prob = max_prob,
-                                    ic.scale = ic.scale,
-                                    yscale_change = yscale_change,
-                                    xlab = xlab,
-                                    xaxis=xaxis,
-                                    yaxis=yaxis,
-                                    xaxis_fontsize=xaxis_fontsize,
-                                    xlab_fontsize=xlab_fontsize,
-                                    title_aligner = title_aligner,
-                                    y_fontsize=y_fontsize,
-                                    title_fontsize = title_fontsize,
-                                    mut_width=mut_width,
-                                    start=start,
-                                    pop_name = pop_names[l],
-                                    logoport_x = logoport_x,
-                                    logoport_y= logoport_y,
-                                    logoport_width= logoport_width,
-                                    logoport_height= logoport_height,
-                                    lineport_x = lineport_x,
-                                    lineport_y= lineport_y,
-                                    lineport_width=lineport_width,
-                                    lineport_height=lineport_height,
-                                    breaklogoport_x = breaklogoport_x,
-                                    breaklogoport_y = breaklogoport_y,
-                                    breaklogoport_width=breaklogoport_width,
-                                    breaklogoport_height=breaklogoport_height,
-                                    barport_x = barport_x,
-                                    barport_y = barport_y,
-                                    barport_width = barport_width,
-                                    barport_height = barport_height)
-      }
+      # }else{
+      #   damageLogo.pos.str.skeleton(pwm = prop_patterns_list[[l]],
+      #                               probs = prob_mutation[l,],
+      #                               breaks_theta_vec = breaks_theta[,l, drop=FALSE],
+      #                               strand_theta_vec = strand_theta[l,],
+      #                               ic = ic[,l],
+      #                               max_pos = max_pos,
+      #                               max_prob = max_prob,
+      #                               ic.scale = ic.scale,
+      #                               yscale_change = yscale_change,
+      #                               xlab = xlab,
+      #                               xaxis=xaxis,
+      #                               yaxis=yaxis,
+      #                               xaxis_fontsize=xaxis_fontsize,
+      #                               xlab_fontsize=xlab_fontsize,
+      #                               title_aligner = title_aligner,
+      #                               y_fontsize=y_fontsize,
+      #                               title_fontsize = title_fontsize,
+      #                               mut_width=mut_width,
+      #                               start=start,
+      #                               pop_name = pop_names[l],
+      #                               logoport_x = logoport_x,
+      #                               logoport_y= logoport_y,
+      #                               logoport_width= logoport_width,
+      #                               logoport_height= logoport_height,
+      #                               lineport_x = lineport_x,
+      #                               lineport_y= lineport_y,
+      #                               lineport_width=lineport_width,
+      #                               lineport_height=lineport_height,
+      #                               breaklogoport_x = breaklogoport_x,
+      #                               breaklogoport_y = breaklogoport_y,
+      #                               breaklogoport_width=breaklogoport_width,
+      #                               breaklogoport_height=breaklogoport_height,
+      #                               barport_x = barport_x,
+      #                               barport_y = barport_y,
+      #                               barport_width = barport_width,
+      #                               barport_height = barport_height)
+      # }
     }
   }
 }

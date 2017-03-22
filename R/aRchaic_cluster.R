@@ -28,7 +28,7 @@ aRchaic_cluster = function(folders,
                            logo.control = list(),
                            topics.control = list(),
                            output_dir = NULL,
-                           save_plot = TRUE,
+                          # save_plot = TRUE,
                            structure_width = 5,
                            structure_height = 8){
 
@@ -38,11 +38,11 @@ aRchaic_cluster = function(folders,
                                  axis_tick = list(axis_ticks_length = .1,
                                                   axis_ticks_lwd_y = .1,
                                                   axis_ticks_lwd_x = .1,
-                                                  axis_label_size = 7,
+                                                  axis_label_size = 10,
                                                   axis_label_face = "bold"),
-                                 legend_title_size = 8,
-                                 legend_key_size = 0.4,
-                                 legend_text_size = 5)
+                                 legend_title_size = 10,
+                                 legend_key_size = 0.7,
+                                 legend_text_size = 8)
 
   logo.control.default <- list(sig_names = NULL, ic.scale=TRUE,
                                max_pos = 20, flanking_bases=1,
@@ -268,7 +268,6 @@ aRchaic_cluster = function(folders,
     tissue_label = factor(labs, levels = levels)
   )
 
-  if(save_plot){
     if(is.null(output_dir)){ output_dir <- paste0(getwd(),"/")}
     plot.new()
     grid.newpage()
@@ -278,22 +277,21 @@ aRchaic_cluster = function(folders,
                                                 structure.control))
     ggplot2::ggsave(paste0(output_dir, "structure.png"), width = structure_width,
                     height = structure_height)
-  }
 
-  if(save_plot){
+  # if(save_plot){
     if(is.null(output_dir)){ output_dir <- paste0(getwd(),"/")}
     plot.new()
     do.call(damageLogo_five, append(list(theta_pool = topic_clus$theta,
-                                output_dir = output_dir, save_plot = save_plot),
+                                output_dir = output_dir),
             logo.control))
     graphics.off()
-  }else if(!save_plot){
-    plot.new()
-    if(is.null(output_dir)){ output_dir <- paste0(getwd(), "/")}
-    do.call(StructureGGplot, append(list(omega= omega, annotation = annotation, palette = topic_cols), structure.control))
-    do.call(damageLogo_five, append(list(theta_pool = topic_clus$theta, output_dir = output_dir, save_plot = save_plot),
-            logo.control))
-  }
+  # }else if(!save_plot){
+  #   plot.new()
+  #   if(is.null(output_dir)){ output_dir <- paste0(getwd(), "/")}
+  #   do.call(StructureGGplot, append(list(omega= omega, annotation = annotation, palette = topic_cols), structure.control))
+  #   do.call(damageLogo_five, append(list(theta_pool = topic_clus$theta, output_dir = output_dir),
+  #           logo.control))
+  # }
 
   message ("Finished")
 }
