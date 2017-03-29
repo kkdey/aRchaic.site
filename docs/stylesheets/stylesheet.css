@@ -20,6 +20,7 @@ body {
   margin: 0;
 }
 
+
 /* HTML5 display definitions
    ========================================================================== */
 
@@ -40,7 +41,6 @@ header,
 hgroup,
 main,
 menu,
-nav,
 section,
 summary {
   display: block;
@@ -447,6 +447,7 @@ a:hover {
   color: #2268b2;
 }
 
+
 header {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -546,9 +547,10 @@ aside a.button {
 }
 
 code, pre {
-  margin-bottom: 20px;
-  margin-left: 1.5cm;
-  margin-right: 1.5cm;
+  margin-bottom: 10px;
+  margin-left: 2cm;
+  margin-right: 4cm;
+  margin-top: 2px;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 16px;
   color: #222;
@@ -565,21 +567,32 @@ codeline {
   border: solid 1px #dbe7f3;
 }
 
+codeline1 {
+  margin-bottom: 20px;
+  margin-left: 0.1cm;
+  margin-right: 0.1cm;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-size: 15px;
+  color: #222;
+  background-color: #f2f8fc;
+  border: solid 1px #dbe7f3;
+}
+
 code {
-  padding: 0 3px;
+  padding: 0px 0px;
   background-color: #f2f8fc;
   border: solid 1px #dbe7f3;
 }
 
 pre {
-  padding: 10px;
+  padding: 0px;
   overflow: auto;
   text-shadow: none;
   background: #e3efeb;
-  border: solid 1px #f2f2f2;
+  border: solid 0.3px #f2f2f2;
 }
 pre code {
-  padding: 1px;
+  padding: 0px;
   color: #d02828;
   background-color: #e3efeb;
   border: none;
@@ -886,6 +899,7 @@ footer a:hover {
     content: none;
   }
 }
+
 
 
 
