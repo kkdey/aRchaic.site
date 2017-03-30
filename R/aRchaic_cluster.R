@@ -63,9 +63,9 @@ aRchaic_cluster = function(folders,
                         nbundles = 1, use_squarem = FALSE, init.adapt = FALSE, type = "full",
                         light = 1, method_admix = 1, sample_init = TRUE, tmax = 10000)
 
-  structure.control <- modifyList(structure.control, structure.control.default)
-  logo.control <- modifyList(logo.control, logo.control.default)
-  topics.control <- modifyList(topics.control, topics.control.default)
+  structure.control <- modifyList(structure.control.default, structure.control)
+  logo.control <- modifyList(logo.control.default, logo.control)
+  topics.control <- modifyList(topics.control.default, topics.control)
 
 
 
