@@ -175,9 +175,9 @@ aRchaic_cluster = function(folders,
       signature_set <- colnames(pooled_data)
       sig_split <- t(sapply(1:length(signature_set), function(x) return(strsplit(signature_set[x], "")[[1]][1:8])))
       new_sig_split <- matrix(0, dim(sig_split)[1], 3);
-      new_sig_split[,1] <- sig_split[,1]
-      new_sig_split[,2] <- sapply(1:length(signature_set), function(x) return(paste(sig_split[x,2:5], collapse="")))
-      new_sig_split[,3] <- sig_split[,6]
+      new_sig_split[,1] <- sig_split[,flanking_bases]
+      new_sig_split[,2] <- sapply(1:length(signature_set), function(x) return(paste(sig_split[x,(flanking_bases+1):(flanking_bases+4)], collapse="")))
+      new_sig_split[,3] <- sig_split[,(flanking_bases+5)]
 
       levels(new_sig_split[,1]) <- c("0", "1", "2", "3", "4")
 
