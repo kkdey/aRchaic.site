@@ -1,26 +1,27 @@
 
-#############   aRchaic_cluster_beta mutation + flank +pos   ############################
 
-aRchaic_cluster_beta_mutation_flank_pos = function(mat,
-                                               K,
-                                               tol=0.01,
-                                               max_pos = 20,
-                                               labs = NULL,
-                                               levels = NULL,
-                                               flanking_bases = 1,
-                                               gom_method = "independent",
-                                               topic_cols = c("red","blue","darkgoldenrod1","cyan","firebrick", "green",
-                                                              "hotpink","burlywood","yellow","darkgray","deepskyblue","darkkhaki",
-                                                              "brown4","darkorchid","magenta","yellow", "azure1","azure4"),
-                                               structure.control = list(),
-                                               logo.control = list(),
-                                               topics.control = list(),
-                                               output_dir = NULL,
-                                               structure_width = 5,
-                                               structure_height = 8,
-                                               inflation = rep(2,1,2),
-                                               output_width = 1200,
-                                               output_height = 700){
+#############   aRchaic cluster beta mutation + pos  ###################
+
+aRchaic_cluster_beta_mutation_pos = function(mat,
+                                             K,
+                                             tol=0.01,
+                                             max_pos = 20,
+                                             labs = NULL,
+                                             levels = NULL,
+                                             flanking_bases = 1,
+                                             gom_method = "independent",
+                                             topic_cols = c("red","blue","darkgoldenrod1","cyan","firebrick", "green",
+                                                             "hotpink","burlywood","yellow","darkgray","deepskyblue","darkkhaki",
+                                                             "brown4","darkorchid","magenta","yellow", "azure1","azure4"),
+                                             structure.control = list(),
+                                             logo.control = list(),
+                                             topics.control = list(),
+                                             output_dir = NULL,
+                                             structure_width = 5,
+                                             structure_height = 8,
+                                             inflation = rep(2,1,2),
+                                             output_width = 1200,
+                                             output_height = 700){
 
   if(is.null(output_dir)){
     output_dir <- paste0(getwd(), "/")
@@ -41,7 +42,7 @@ aRchaic_cluster_beta_mutation_flank_pos = function(mat,
                                     legend_key_size = 0.7,
                                     legend_text_size = 8)
 
-  logo.control.default <- list(sig_names = NULL, ic.scale=TRUE,
+  logo.control.default <- list(sig_names = NULL, ic.scale=FALSE,
                                max_pos = max_pos, flanking_bases=flanking_bases,
                                yscale_change = TRUE, xaxis=TRUE,
                                yaxis=TRUE, xlab = " ", xaxis_fontsize=20,
@@ -50,7 +51,7 @@ aRchaic_cluster_beta_mutation_flank_pos = function(mat,
                                mut_width=2, start=0.0001,
                                renyi_alpha = 5, inflation_factor = c(3,1,3),
                                pop_names = paste0("Cluster : ", 1:K),
-                               logoport_x = 0.25, logoport_y= 0.50, logoport_width= 0.25,
+                               logoport_x = 0.25, logoport_y= 0.50, logoport_width= 0.15,
                                logoport_height= 0.50,
                                lineport_x = 0.9, lineport_y=0.73, lineport_width=0.35,
                                lineport_height=0.48,
@@ -122,9 +123,9 @@ aRchaic_cluster_beta_mutation_flank_pos = function(mat,
 
   if(is.null(output_dir)){ output_dir <- paste0(getwd(),"/")}
   plot.new()
-  do.call(damageLogo_one, append(list(theta_pool = topic_clus$theta,
-                                       output_dir = output_dir),
-                                  logo.control))
+  do.call(damageLogo_four, append(list(theta_pool = topic_clus$theta,
+                                      output_dir = output_dir),
+                                 logo.control))
   graphics.off()
 
   message("Finished")
