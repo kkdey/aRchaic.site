@@ -19,7 +19,6 @@ aRchaic_cluster_beta_mutation_pos = function(mat,
                                              output_dir = NULL,
                                              structure_width = 5,
                                              structure_height = 8,
-                                             inflation = rep(2,1,2),
                                              output_width = 1200,
                                              output_height = 700){
 

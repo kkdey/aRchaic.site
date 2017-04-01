@@ -9,9 +9,6 @@ aRchaic_cluster_beta_mutation_flank = function(mat,
                                          tol=0.01,
                                          labs = NULL,
                                          levels = NULL,
-                                         run_from = c("start", "gom", "plot"),
-                                         run_index = NULL,
-                                         breaks = c(-1, seq(1,20,1)),
                                          flanking_bases = 1,
                                          gom_method = "independent",
                                          topic_cols = c("red","blue","darkgoldenrod1","cyan","firebrick", "green",
@@ -24,7 +21,7 @@ aRchaic_cluster_beta_mutation_flank = function(mat,
                                          structure_width = 5,
                                          structure_height = 8,
                                          inflation = rep(2,1,2),
-                                         output_width = 500,
+                                         output_width = 1200,
                                          output_height = 700){
   if(is.null(output_dir)){
     output_dir <- paste0(getwd(), "/")

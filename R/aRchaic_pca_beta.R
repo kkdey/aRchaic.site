@@ -8,7 +8,7 @@ library(limma)
 
 aRchaic_pca_beta =  function(mat,
                              labs = NULL,
-                             type = c("mutation", "mutation-flank", "mutation-flank-pos",
+                             type = c("mutation", "mutation-flank", "mutation-pos","mutation-flank-pos",
                                       "specific-mutation-pos", "wo-strand", "wo-strand-break"),
                              pattern = NULL,
                              flanking_bases = 1,
@@ -26,6 +26,8 @@ aRchaic_pca_beta =  function(mat,
 
   if(type == "mutation"){
     mat_reduced <- filter_by_mutation(mat)
+  }else if (type == "mutation-pos"){
+    mat_reduced <- filter_by_mutation_pos(mat, max_pos, flanking_bases)
   }else if (type == "mutation-flank"){
     mat_reduced <- filter_by_mutation_flank(mat)
   }else if (type == "mutation-flank-pos"){
@@ -40,7 +42,7 @@ aRchaic_pca_beta =  function(mat,
   }else if (type == "wo-strand-break"){
     mat_reduced <- filter_out_strand_break(mat)
   }else {
-    stop("the type of filtering does not match with the possible options")
+    stop("the type of filtering does not match with the possible options: see documentation")
   }
 
   rownames(mat_reduced) <- rownames(mat)

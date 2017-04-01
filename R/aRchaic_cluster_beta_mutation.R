@@ -19,7 +19,7 @@ aRchaic_cluster_beta_mutation = function(mat,
                                          output_dir = NULL,
                                          structure_width = 5,
                                          structure_height = 8,
-                                         output_width = 500,
+                                         output_width = 1200,
                                          output_height = 700){
 
   if(is.null(output_dir)){
