@@ -7,6 +7,10 @@ aRchaic_pool = function(folders,
                         flanking_bases = 1){
 
   message("Checking if the folders exist")
+  
+  if(!is.null(pattern)){
+    
+  }
 
   for(i in 1:length(folders)){
     if(!file.exists(folders[i]))
@@ -17,16 +21,16 @@ aRchaic_pool = function(folders,
 
   for(i in 1:length(folders)){
     if(!file.exists(paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda"))){
-      message ("Processing the MutationFeatureFormat files in the directory")
+      message (paste0("Processing the MutationFeatureFormat files in the directory", folders[i]))
       out <- aggregate_signature_counts(dir = paste0(folders[i]),
-                                        pattern = pattern,
-                                        breaks = breaks,
-                                        flanking_bases = flanking_bases)
-      clubbed_data <- club_signature_counts(out, flanking_bases = 1)
-      save(clubbed_data, file = paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda"))
-      datalist[[i]] <- clubbed_data
+                                          pattern = NULL,
+                                          breaks = breaks,
+                                          flanking_bases = flanking_bases)
+        clubbed_data <- club_signature_counts(out, flanking_bases = flanking_bases)
+        save(clubbed_data, file = paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda"))
+        datalist[[i]] <- clubbed_data
     }else{
-      datalist[[i]] <- get(load(paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda")))
+        datalist[[i]] <- get(load(paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda")))
     }
   }
 
@@ -46,7 +50,17 @@ aRchaic_pool = function(folders,
   for(num in 1:length(datalist)){
     pooled_data[match(rownames(datalist[[num]]), rownames(pooled_data)), match(colnames(datalist[[num]]), sig_names)] <- datalist[[num]]
   }
-
-  return(pooled_data)
+  
+  if(is.null(pattern)){
+    return(pooled_data)
+  }
+  
+  if(!is.null(pattern)){
+    temp <- as.numeric()
+    for(l in 1:length(pattern)){
+      temp <- rbind(temp, pooled_data[grep(pattern = pattern[l], paste0(rownames(pooled_data), ".csv")),, drop=FALSE])
+    }
+    return(temp)
+  }
 
 }

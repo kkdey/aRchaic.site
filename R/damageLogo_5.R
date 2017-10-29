@@ -51,10 +51,10 @@ damageLogo_five <- function(theta_pool,
                             xaxis=TRUE,
                             yaxis=TRUE,
                             xlab = " ",
-                            xaxis_fontsize=5,
-                            xlab_fontsize=10,
+                            xaxis_fontsize=10,
+                            xlab_fontsize=20,
                             title_aligner = 18,
-                            y_fontsize=10,
+                            y_fontsize=20,
                             title_fontsize = 20,
                             mut_width=2,
                             start=0.0001,
@@ -76,7 +76,7 @@ damageLogo_five <- function(theta_pool,
                             barport_x = 0.58,
                             barport_y=0.60,
                             barport_width=0.25,
-                            barport_height=0.25,
+                            barport_height=0.40,
                             output_dir = NULL,
                             output_width = 1200,
                             output_height = 700){
@@ -120,6 +120,7 @@ damageLogo_five <- function(theta_pool,
   if(is.null(sig_names))
     sig_names <- rownames(theta)
 
+ # prob_mutation <- filter_by_pos(t(theta_pool), max_pos = max_pos)
   prob_mutation <- filter_signatures_only_location(t(theta_pool), max_pos = max_pos, flanking_bases = flanking_bases)
   prob_mutation <- t(apply(prob_mutation, 1, function(x) {
     y <- x[!is.na(x)];
@@ -470,10 +471,10 @@ damageLogo.pos.str.skeleton <- function(pwm,
 
   if (xaxis){
     grid.xaxis(at=xlim,
-               label=(c(paste0("\n left \n flank \n", flanked_coord[1:floor(npos/2)]),
-                        "\n mutation",
-                        paste0("\n right \n flank \n", -flanked_coord[(1:floor(npos/2))])
-               )),
+               label=c(paste0("\n left \n flank \n"),
+                        "\n mismatch",
+                        paste0("\n right \n flank \n")
+               ),
                gp=gpar(fontsize=xaxis_fontsize))
     grid.text(paste0(xlab),y=unit(-3,"lines"),
               gp=gpar(fontsize=xlab_fontsize))
@@ -517,16 +518,18 @@ damageLogo.pos.str.skeleton <- function(pwm,
 }
 
 plot_bar <- function(strand_theta_vec){
-  df <- data.frame("value" = as.numeric(t(strand_theta_vec)), "strand"=plyr::revalue(factor(names(strand_theta_vec)), c("plus" = "+",  "minus" = "-")))
+  df <- data.frame("value" = as.numeric(t(strand_theta_vec)), "strand"=plyr::revalue(factor(names(strand_theta_vec)), c("plus" = "+",  "minus" = "\U2012")))
   ggplot(df, aes(x=strand, y=value, fill=c("green", "lightpink")))  +
-    geom_bar(stat='identity', width=0.8, position = position_dodge(width=0.3), colour = 'black') +
+    geom_bar(stat='identity', width=0.8, position = position_dodge(width=1.5), 
+             colour = 'black') + labs(title="   strand \n orientation ") + 
     xlab("") + ylim(0,1) + ylab("") + theme(legend.position="none",
                                             axis.ticks = element_blank(),
                                             axis.text = element_blank(),
                                             panel.background = element_rect(fill = "white"),
-                                            panel.border = element_rect(colour = "white")) +
+                                            panel.border = element_rect(colour = "white"),
+                                            title = element_text(size = 27, vjust = 50)) +
     #  geom_text(aes(x=strand, y=value+0.1, label=value)) +
-    geom_text(aes(x=strand, y=value*0.5, label=as.character(strand)), colour="black", size=5) + coord_flip()
+    geom_text(aes(x=strand, y=value*0.5, label=as.character(strand)), colour="white", size=25) + coord_flip()
     # theme(axis.text = element_blank(),
     #       axis.ticks = element_blank(),
     #       panel.grid  = element_blank(),
@@ -556,12 +559,12 @@ plot_logo <- function(breaks_theta_vec){
             frame_width = 1,
             ic.scale = TRUE,
             yscale_change = TRUE,
-            pop_name = "5' strand break",
+            pop_name = "strand-break composition",
             xlab = "",
             ylab = "",
             yaxis=FALSE,
-            main_fontsize = 20,
-            xaxis_fontsize = 20,
+            main_fontsize = 30,
+            xaxis_fontsize = 27,
             col_line_split="black",
             newpage=FALSE)
 }
@@ -605,7 +608,7 @@ ic_computer_2 <-function(mat, alpha) {
 damage.ic<-function(pwm, alpha=1, inflation_factor = c(1,1,1)) {
   if(length(inflation_factor) != ncol(pwm[[1]])){
     stop("inflation factor vector size
-         must equal to the number of sites - flanking bases + mutation")
+         must equal to the number of sites - flanking bases + mismatch")
   }
   npos<-ncol(pwm[[1]])
   ic<- matrix(0, npos, length(pwm))
@@ -1291,11 +1294,11 @@ addLetter2 <- function(letters,which,x.pos,y.pos,ht,wt){
 
 
 plot_graph <- function(probs, max_pos, max_prob, col="red",
-                       cex=unit(1, "npc"), pch=unit(16,"npc"),
-                       xlab="position", ylab="prob. of mutation",
+                       cex=unit(1.3, "npc"), pch=unit(16,"npc"),
+                       xlab="position", ylab="prob. of mismatch",
                        main="",
-                       cex.axis=unit(1, "npc"),
-                       cex.main=unit(1, "npc")){
+                       cex.axis=unit(1.5, "npc"),
+                       cex.main=unit(1.5, "npc")){
   # if (length(probs) != max_pos){
   #   stop(cat('probability vector must be of length ', max_pos))
   # }
@@ -1304,12 +1307,13 @@ plot_graph <- function(probs, max_pos, max_prob, col="red",
        type = "b", xaxt = "n", yaxt = "n", cex = cex, pch=pch, col=col, main=main,
        cex.main=cex.main, ylab="", xlab="")
   axis(side = 1, at = floor(seq(1, max_pos, length.out=5)), cex.axis = cex.axis, lwd.ticks = 1, tck=-0.05,
-       cex.lab=2, mgp=c(2.5, 0.5, 0))
-  title(xlab = xlab, mgp=c(2.5,1.5,0), cex.lab=1.8)
+       cex.lab=2.8, mgp=c(3.5, 1, 0))
+  title(xlab = xlab, mgp=c(3,1.5,0), cex.lab=2.3)
   ylimit <- c(0.0, 0.5, 1.0)*max_prob
-  axis(side = 2, at = c(0.0, 0.5, 1.0), labels = round(ylimit,2), cex.axis = cex.axis, lwd.ticks=1, tck=-0.05,
-       cex.lab=2, mgp=c(2.5, 0.5, 0))
-  title(ylab = ylab, mgp=c(2.5,1,0), cex.lab=1.8)
+  axis(side = 2, at = c(0.0, 0.5, 1.0), labels = round(ylimit,2), 
+       cex.axis = cex.axis, lwd.ticks=1, tck=-0.05,
+       cex.lab=2, mgp=c(3.5, 1, 0))
+  title(ylab = ylab, mgp=c(3,1,0), cex.lab=2.3)
 }
 
 

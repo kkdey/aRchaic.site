@@ -67,7 +67,7 @@ aRchaic_tsne =  function(folders,
 
   for(i in 1:length(folders)){
     if(!file.exists(paste0(folders[i], tail(strsplit(folders[i], "/")[[1]],1), ".rda"))){
-      message ("Processing the MutationFeatureFormat files in the directory")
+      message (paste0("Processing the MutationFeatureFormat files in the directory", folders[i]))
       out <- aggregate_signature_counts(dir = paste0(folders[i]),
                                         pattern = NULL,
                                         breaks = breaks,

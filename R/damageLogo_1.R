@@ -254,7 +254,7 @@ damageLogo.pos.str.skeleton.one <- function(pwm,
   if (xaxis){
     grid.xaxis(at=xlim,
                label=(c(paste0("\n left \n flank \n", flanked_coord[1:floor(npos/2)]),
-                        "\n mutation",
+                        "\n mismatch",
                         paste0("\n right \n flank \n", -flanked_coord[(1:floor(npos/2))])
                )),
                gp=gpar(fontsize=xaxis_fontsize))
