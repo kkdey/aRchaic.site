@@ -75,7 +75,7 @@
      padding-top: 1 cm;
      color: black;
   }
-</style> 
+</style>
 
 
 <p class="bottom-three">
@@ -90,7 +90,9 @@
 
 
 
-<p class ="margin" id = "Demo"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Demo </strong></color></font></span></p>
+<p class ="margin" id = "Demo"><span style="color:brown;"> <font size="7"><color = "brown;"><strong> Introduction </strong></color></font></span></p>
+
+
 
 <p class = "margin"><font size="5"> To install and run <strong>aRchaic</strong>, the user needs to have the following (installation instructions provided in the links) </font></p>
 
@@ -119,7 +121,7 @@
 
 <pre><code>
   devtools::install_github("aRchaic")
-  
+
 </code></pre>
 
 <p class = "margin"><font size="5"> <strong> aRchaic </strong> installs as dependencies all the packages mentioned above. However, to manually install the required packages, the installation instructions are provided below. </font></p>
@@ -229,8 +231,8 @@
 
 <h3><span class="margin" style = "color:brown"><font size="6"><em> Run aRchaic clustering </em></font></span></h3>
 
-<p class = "margin"><font size="5"> The primary function of the aRchaic package is <codeline>aRchaic_cluster()</codeline> which performs clustering of the samples using a Grade of membership model, assigning to each sample a membership in different clusters. Below we present a snippet of the 
-	main structure of this function. We cover this functions and its a in greater detail in our Tutorial section. 
+<p class = "margin"><font size="5"> The primary function of the aRchaic package is <codeline>aRchaic_cluster()</codeline> which performs clustering of the samples using a Grade of membership model, assigning to each sample a membership in different clusters. Below we present a snippet of the
+	main structure of this function. We cover this functions and its a in greater detail in our Tutorial section.
 </font></p>
 
 <pre><code>
@@ -242,11 +244,11 @@
   #' K : the number of clusters to fit to the data
   #' labs: the labels of the samples (if not provided, defaults to the directory name where they are stored)
   #' run_from: if "start", will run data processing of MFF files followed by clustering  and visualization.
-               if "gom", will look for whether MFF files are processed already from previous runs, 
+               if "gom", will look for whether MFF files are processed already from previous runs,
                if so, will run only clustering and visualization, else revert to "start"
-               if "plot", will look for a clustering model output from previous runs, 
+               if "plot", will look for a clustering model output from previous runs,
                if present, will perform visualization on the clustering output, else revert back to "gom".
-               These three options are meant to automatically minimize repetition of taks across runs on same or similar sets of data. 
+               These three options are meant to automatically minimize repetition of taks across runs on same or similar sets of data.
   #' output_dir: The output directory where to store the output files and model output
 
 </pre></code>
@@ -258,9 +260,9 @@
 
 <ul class="list"><style="list-style-type:circle">
 <li><p><codeline> model.rda </codeline> - file containing the output from the GoM model fit</p></li>
-<li><p><codeline>structure.png</codeline> - file showing the grades of membership of samples grouped by labels in 
+<li><p><codeline>structure.png</codeline> - file showing the grades of membership of samples grouped by labels in
                                             a STRUCTURE plot type representation</p></li>
-<li><p><codeline>logo_clus_&quot;k&quot;.png</codeline> - files for each k from 1 to K, the number of clusters, 
+<li><p><codeline>logo_clus_&quot;k&quot;.png</codeline> - files for each k from 1 to K, the number of clusters,
                                                           showing the logo plot representation of each cluster.</p></li>
 </ul>
 
